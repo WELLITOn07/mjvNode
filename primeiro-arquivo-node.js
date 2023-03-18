@@ -8,8 +8,11 @@ const numberTwo = 2;
 /**@type {Date} */
 const date = new Date();
 
+/**@type {string} */
 const day = date.getDate().toString().padStart(2, '0'); 
+/**@type {string} */
 const month = (date.getMonth() + 1).toString().padStart(2, '0');
+/**@type {string} */
 const year = date.getFullYear().toString(); 
 
 const formattedDate = `${day}/${month}/${year}`; 
