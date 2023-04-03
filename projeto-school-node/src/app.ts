@@ -1,11 +1,13 @@
 import express from "express";
 import { Request, Response, Router } from "express";
 import cors from "cors";
+import routes from './routers'; //olhando em especifico para o index.ts
 
 const app = express();
 
 app.use(cors()); //utilize ocors para config de cabeçalhos
 app.use(express.json()); //utilize json requests 
+app.use(routes);
 
 const router = Router();
 
