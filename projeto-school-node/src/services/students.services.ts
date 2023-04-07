@@ -1,72 +1,26 @@
 import { Student } from "../models/student.model";
+import StudentRepository from "../repositories/student.repository";
 
 export class StudentsService {
-  students: Array<Student> = [
-    {
-      name: "Welliton",
-      email: "Welliton@gmail.com",
-      document: "012.010.100-20",
-      password: "12345",
-      age: 30,
-    },
-    {
-      name: "Marcos",
-      email: "Marcos@gmail.com",
-      document: "012.010.100-30",
-      password: "12345",
-      age: 35,
-    },
-    {
-      name: "Leonardo",
-      email: "Leonardo@gmail.com",
-      document: "22",
-      password: "12345",
-      age: 47,
-    },
-    {
-      name: "Bruna",
-      email: "Bruna@gmail.com",
-      document: "012.010.100-40",
-      password: "12345",
-      age: 18,
-    },
-  ];
 
   getAll() {
-    return this.students;
+    return StudentRepository.getAll()
   }
 
   getByDocument(document: string) {
-    const student = this.students.find((std: any) => std.document === document);
-
-    return student;
+    return StudentRepository.getByDocument(document)
   }
 
-  create(student: Student) {
-    this.students.push(student);
+  create(student: typeof Student) {
+    return StudentRepository.create(student)
   }
 
   remove(documet: string) {
-    const studentIndex: number = this.students.findIndex(
-      (student: any) => student.document === Number(documet)
-    );
-
-    if (studentIndex === -1) {
-      throw new Error("Não encontrado!");
-    }
-
-    this.students.splice(studentIndex, 1)
+    return StudentRepository.remove(documet)
   }
 
-  update(document: string, student: Student) {
-    const studentIndex: number = this.students.findIndex((student: any) => student.document === Number(document));
-  
-    if (studentIndex === -1) {
-      throw new Error("Estudante não encontrado!")
-    }
-
-    this.students[studentIndex] = student;
+  update(document: string, student: typeof Student) {
+    StudentRepository.update(document, student)
   }
 }
-
 export default new StudentsService();
